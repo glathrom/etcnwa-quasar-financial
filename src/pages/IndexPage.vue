@@ -4,6 +4,7 @@
     <div v-if="selectedFamily">
       <family-update-form v-model="selectedFamily" />
     </div>
+    <error-dialog v-model="store.errorTrigger" :message="store.errorMessage" />
   </q-page>
 </template>
 
@@ -13,6 +14,7 @@ import { useFinancialStore } from 'src/stores/financialstore';
 import FamilyTable from 'src/components/FamilyTable.vue';
 import type { FamilyIfce } from 'src/components/models';
 import FamilyUpdateForm from 'src/components/FamilyUpdateForm.vue';
+import ErrorDialog from 'src/components/ErrorDialog.vue';
 
 const store = useFinancialStore();
 

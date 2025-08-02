@@ -18,7 +18,7 @@
         </q-td>
       </template>
       <template v-slot:top-right>
-        <q-btn color="primary" class="q-mr-sm" label="Reset" @click="filter = ''" />
+        <q-btn color="primary" class="q-mr-sm" label="Reset" @click="onReset" />
         <q-input outlined dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
             <q-icon name="search" />
@@ -51,6 +51,11 @@ watch(selected, (newValue) => {
 const { rows } = defineProps<{
   rows: FamilyIfce[];
 }>();
+
+function onReset() {
+  filter.value = '';
+  selected.value = [];
+}
 
 const columns: QTableColumn[] = [
   { name: 'id', align: 'left', label: 'Family ID', field: 'id', sortable: true },
