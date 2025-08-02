@@ -18,7 +18,7 @@ function onReset() {
   LocalStorage.remove('TOKEN');
   token.value = '';
   store.fetchData();
-  window.location.reload();
+  // window.location.reload();
 }
 
 onMounted(() => {

@@ -5,7 +5,7 @@ import { api } from 'src/boot/axios';
 import { LocalStorage } from 'quasar';
 
 export const useUserStore = defineStore('user', () => {
-  const user = ref<UserIfce>({} as UserIfce);
+  const user = ref<UserIfce | null>(null);
 
   const token = LocalStorage.getItem('TOKEN') as string;
   const endpoint = '/accounts/user/';
@@ -27,7 +27,11 @@ export const useUserStore = defineStore('user', () => {
       })
       .catch((error: Error) => {
         console.error(error.message);
-        alert(error.message);
+        LocalStorage.removeItem('userFirstName');
+        LocalStorage.removeItem('userLastName');
+        LocalStorage.removeItem('userEmail');
+        LocalStorage.removeItem('username');
+        user.value = null;
       });
   }
 
